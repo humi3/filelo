@@ -2,6 +2,7 @@
 + 参考サイト
     * https://engineer-club.jp/java-reading-files#-Files
     * https://www.tutorialspoint.com/java/java_files_io.htm
+    * https://qiita.com/kazukichi/items/9b9bf4c1a65872196dad
 
  ## 注意
   + Filesのメソッドを使う時は、読み込むファイルの容量に注意する。大きすぎると、OutOfMemoryErrorが簡単に起こる。

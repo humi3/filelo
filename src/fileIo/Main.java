@@ -1,17 +1,27 @@
 package fileIo;
 
+import java.io.File;
+
+import log.Performance;
+
 public class Main {
 
-	private final static String INPUT_FILE_FOLDER_DIR =  System.getProperty("user.dir") + "\\file\\input\\";
-	private final static String OUTPUT_FILE_FOLDER_DIR =  System.getProperty("user.dir") + "\\file\\output\\";
-	
+	private final static String INPUT_FOLDER_PATH = System.getProperty("user.dir") + File.separator
+			+ "file" + File.separator + "input" + File.separator;
+	private final static String OUTPUT_FOLDER_PATH = System.getProperty("user.dir") + File.separator
+			+ "file" + File.separator + "output" + File.separator;
+
 	private final static String TEST_FILE_NAME = "test.txt";
 
 	public static void main(String[] args) {
-		 String dir = System.getProperty("user.dir");
-		 System.out.println("Projectのトップレベルのパス： " + dir);
-		 System.out.println(INPUT_FILE_FOLDER_DIR);
-		 System.out.println(OUTPUT_FILE_FOLDER_DIR);
+
+		Performance log = new Performance();
+		log.start("test");
+		String dir = System.getProperty("user.dir");
+		System.out.println("Projectのトップレベルのパス： " + dir);
+		System.out.println(INPUT_FOLDER_PATH);
+		System.out.println(OUTPUT_FOLDER_PATH);
+		log.end("test");
 	}
 
 }
