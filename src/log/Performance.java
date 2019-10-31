@@ -1,14 +1,14 @@
 package log;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+
+import common.Common;
 
 /**
  * 実行速度を測るクラス
@@ -16,21 +16,28 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class Performance {
 
-	private static final String LOG_PATH = System.getProperty("user.dir") + File.separator + "log" + File.separator
-			+ "performance.log";
-
 	private static final String LOG_TEXT = "%key 処理時間:  %performanceTime ms";
 	private static final String REPLACE_WORD_KEY = "%key";
 	private static final String REPLACE_WORD_PERFORMANCE_TIME = "%performanceTime";
 
-	private Map<String, Long> log;
+	private Map<String, Long> logPointMap;
 
 	/* 1つ前のkey */
 	private String previousKey;
 
 	public Performance() {
 		super();
-		this.log = new HashMap<String, Long>();
+		this.logPointMap = new HashMap<String, Long>();
+	}
+
+	/**
+	 * 現在時刻をログファイルに記録します。
+	 */
+	public void writeTime() {
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat(Common.DATE_FORMAT);
+		String formattedDate = dateFormat.format(date);
+		Log.writeLog(formattedDate);
 	}
 
 	/**
@@ -42,7 +49,7 @@ public class Performance {
 			return;
 		}
 		this.previousKey = key;
-		this.log.put(key, System.currentTimeMillis());
+		this.logPointMap.put(key, System.currentTimeMillis());
 	}
 
 	/**
@@ -63,41 +70,17 @@ public class Performance {
 	 * @param key nullは許容しない
 	 */
 	public void stop(String key) {
-		if (!this.log.containsKey(key) || StringUtils.isEmpty(key)) {
+		if (!this.logPointMap.containsKey(key) || StringUtils.isEmpty(key)) {
 			return;
 		}
 		long endTime = System.currentTimeMillis();
-		long performanceTime = endTime - this.log.get(key);
+		long performanceTime = endTime - this.logPointMap.get(key);
 
 		String logText = LOG_TEXT;
 		logText = logText.replace(REPLACE_WORD_KEY, key);
 		logText = logText.replace(REPLACE_WORD_PERFORMANCE_TIME, Long.toString(performanceTime));
 
-		writeLog(logText);
-		this.log.remove(key);
-	}
-
-	/**
-	 * ログを外部ファイルに出力<br>
-	 * @param logText
-	 */
-	private void writeLog(String logText) {
-		if (StringUtils.isEmpty(logText))
-			return;
-
-		FileWriter fw = null;
-		BufferedWriter bw = null;
-		PrintWriter pw = null;
-		try {
-			fw = new FileWriter(LOG_PATH, true);
-			bw = new BufferedWriter(fw);
-			pw = new PrintWriter(bw);
-
-			pw.write(logText);
-		} catch (IOException e) {
-			System.out.println(e);
-		} finally {
-			pw.close();
-		}
+		Log.writeLog(logText);
+		this.logPointMap.remove(key);
 	}
 }

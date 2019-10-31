@@ -1,4 +1,4 @@
-package fileIo;
+package common;
 
 import java.io.File;
 
@@ -8,7 +8,10 @@ import java.io.File;
  * @author bunnk
  *
  */
-public final class FileCommon {
+public final class Common {
+
+	/* DateFormat yyyy-MM-dd HH:mm */
+	public final static String DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
 	/* インプットファイル名 こころ 著者：夏目漱石 保存形式 utf-8 */
 	public final static String INPUT_FILE_NAME_KOKORO = "kokoro.txt";
@@ -20,4 +23,8 @@ public final class FileCommon {
 	/* outputのフォルダパス */
 	public final static String OUTPUT_FOLDER_PATH = System.getProperty("user.dir") + File.separator
 			+ "file" + File.separator + "output" + File.separator;
+
+	/* logのファイルパス */
+	public static final String LOG_PATH = System.getProperty("user.dir") + File.separator + "log" + File.separator
+			+ "performance.log";
 }
