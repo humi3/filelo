@@ -1,6 +1,6 @@
 package fileIo;
 
-import fileIo.read.FileRead;
+import fileIo.read.FilesRead;
 import log.Performance;
 
 public class Main {
@@ -9,9 +9,9 @@ public class Main {
 
 		Performance log = new Performance();
 
-		FileRead readTest = new FileRead();
+		FilesRead readTest = new FilesRead();
 
-		/*開始時間を記録 */
+		/* 開始時間を記録 */
 		log.writeTime();
 
 		/* readString */

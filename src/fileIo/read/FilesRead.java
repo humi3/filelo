@@ -10,10 +10,12 @@ import java.util.List;
 import common.Common;
 
 /**
- * 各ファイルの読み込みをまとめたクラス
+ * 各ファイルの読み込みをまとめたクラス<br>
+ * filesの機能でファイルを読み込む動作をまとめたクラス
+ * 
  * @author bunnk
  */
-public class FileRead {
+public class FilesRead {
 
 	/**
 	 * readString<br>
@@ -21,15 +23,15 @@ public class FileRead {
 	 * OutOfMemoryError に注意<br>
 	 * java 11以降使用可能<br>
 	 * 以下本家docs<br>
-	 *<br>
-	 * param   path the path to the file<br>
-	 * param   cs the charset to use for decoding<br>
-	 *<br>
-	 * return  a String containing the content read from the file<br>
-	 *<br>
-	 * throws  IOException<br>
-	 * throws  OutOfMemoryError<br>
-	 * throws  SecurityException<br>
+	 * <br>
+	 * param path the path to the file<br>
+	 * param cs the charset to use for decoding<br>
+	 * <br>
+	 * return a String containing the content read from the file<br>
+	 * <br>
+	 * throws IOException<br>
+	 * throws OutOfMemoryError<br>
+	 * throws SecurityException<br>
 	 */
 	public void readString() {
 		try {
@@ -46,17 +48,17 @@ public class FileRead {
 	 * java 7以降使用可能<br>
 	 * 以下本家docs<br>
 	 * <br>
-	 * param   path<br>
-	 *          the path to the file<br>
-	 * param   cs<br>
-	 *          the charset to use for decoding<br>
-	 *<br>
-	 * return  the lines from the file as a {@code List}; whether the {@code<br>
+	 * param path<br>
+	 * the path to the file<br>
+	 * param cs<br>
+	 * the charset to use for decoding<br>
+	 * <br>
+	 * return the lines from the file as a {@code List}; whether the {@code<br>
 	 *          List} is modifiable or not is implementation dependent and<br>
-	 *          therefore not specified<br>
-	 *<br>
-	 * throws  IOException <br>
-	 * throws  SecurityException<br>
+	 * therefore not specified<br>
+	 * <br>
+	 * throws IOException <br>
+	 * throws SecurityException<br>
 	 *
 	 */
 	public void readAllLines() {
@@ -75,14 +77,14 @@ public class FileRead {
 	 * java 7以降使用可能<br>
 	 * 以下本家docs<br>
 	 * <br>
-	 * param   path<br>
-	 *          the path to the file<br>
+	 * param path<br>
+	 * the path to the file<br>
 	 * <br>
-	 * return  a byte array containing the bytes read from the file<br>
+	 * return a byte array containing the bytes read from the file<br>
 	 * <br>
-	 * throws  IOException<br>
-	 * throws  OutOfMemoryError<br>
-	 * throws  SecurityException<br>
+	 * throws IOException<br>
+	 * throws OutOfMemoryError<br>
+	 * throws SecurityException<br>
 	 *
 	 */
 	public void readAllBytes() {
@@ -109,10 +111,16 @@ public class FileRead {
 	}
 
 	/**
+	 * @return file path
+	 */
+	private Path getPath(String file) {
+		return Paths.get(Common.INPUT_FOLDER_PATH + file);
+	}
+
+	/**
 	 * @return kokoro path
 	 */
 	private Path getKokoroPath() {
-		return Paths.get(Common.INPUT_FOLDER_PATH + Common.INPUT_FILE_NAME_KOKORO);
+		return this.getPath(Common.INPUT_FILE_NAME_KOKORO);
 	}
-
 }
