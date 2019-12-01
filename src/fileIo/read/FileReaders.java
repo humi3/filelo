@@ -2,6 +2,7 @@ package fileIo.read;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import common.Common;
@@ -9,9 +10,12 @@ import common.Common;
 /**
  * ファイルの読み込みをまとめたクラス
  */
-public class FileReader {
+public class FileReaders {
 
-	public void FileReader() {
+	/**
+	 * ファイルの読み込みの計測のため、system.outしないß
+	 */
+	public void useFileReader() {
 		File file = this.getKokoroFile();
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String text;

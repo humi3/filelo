@@ -35,8 +35,8 @@ public class FilesRead {
 	 */
 	public void readString() {
 		try {
-			@SuppressWarnings("unused")
 			String text = Files.readString(getKokoroPath(), StandardCharsets.UTF_8);
+			System.out.println(text);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -63,8 +63,10 @@ public class FilesRead {
 	 */
 	public void readAllLines() {
 		try {
-			@SuppressWarnings("unused")
 			List<String> texts = Files.readAllLines(getKokoroPath(), StandardCharsets.UTF_8);
+			for (String str : texts) {
+				System.out.println(str);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -89,8 +91,10 @@ public class FilesRead {
 	 */
 	public void readAllBytes() {
 		try {
-			@SuppressWarnings("unused")
 			byte[] bytes = Files.readAllBytes(getKokoroPath());
+			for (byte s : bytes) {
+				System.out.print(s);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

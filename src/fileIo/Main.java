@@ -1,5 +1,6 @@
 package fileIo;
 
+import fileIo.read.FileReaders;
 import fileIo.read.FilesRead;
 import log.Performance;
 
@@ -32,6 +33,13 @@ public class Main {
 		/* lines */
 		log.start("lines");
 		readTest.lines();
+		log.stop();
+
+		FileReaders testReader = new FileReaders();
+
+		/*  */
+		log.start("FileReader");
+		testReader.useFileReader();
 		log.stop();
 	}
 

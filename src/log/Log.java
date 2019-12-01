@@ -13,6 +13,7 @@ public class Log {
 
 	/**
 	 * ログを外部ファイルに出力<br>
+	 * 
 	 * @param logText
 	 */
 	public static void writeLog(String logText) {
