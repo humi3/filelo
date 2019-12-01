@@ -15,5 +15,8 @@ bin
 #log
 *.log
 
+#txt
+*.txt
+
 # vs code
 .vscode

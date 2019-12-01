@@ -13,60 +13,78 @@ import common.Common;
  */
 public class FileWite {
 
+	private boolean isResult;
+
 	/**
 	 * FileWriterを使用してファイルの書き込みをしてみる<br/>
-	 * 
+	 *
 	 * @param outoputList
 	 */
 	public void useFileWriter(List<String> outputList) {
 		try {
-			File file = new File("useFileWriter_" + Common.OUTPUT_FOLDER_PATH + Common.OUTPUT_FILE_NAME_KOKORO);
-			FileWriter filewriter = new FileWriter(file);
+			File file = new File(Common.OUTPUT_FOLDER_PATH + "useFileWriter_" + Common.OUTPUT_FILE_NAME_KOKORO);
+			FileWriter filewriter = new FileWriter(file, true);
 			for (String out : outputList) {
 				filewriter.write(out);
+				filewriter.write(System.getProperty("line.separator"));
 			}
 			filewriter.close();
+			this.isResult = true;
 		} catch (Exception e) {
 			System.out.println(e.toString());
+			this.isResult = false;
 		}
 	}
 
 	/**
 	 * BufferedWriterを使用してファイルの書き込みをしてみる。<br/>
-	 * 
+	 *
 	 * @param outputList
 	 */
 	public void useBufferedWriter(List<String> outputList) {
 		try {
-			File file = new File("useBufferedWriter_" + Common.OUTPUT_FOLDER_PATH + Common.OUTPUT_FILE_NAME_KOKORO);
-			FileWriter filewriter = new FileWriter(file);
+			File file = new File(Common.OUTPUT_FOLDER_PATH + "useBufferedWriter_" + Common.OUTPUT_FILE_NAME_KOKORO);
+			FileWriter filewriter = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(filewriter);
 			for (String out : outputList) {
 				bw.write(out);
+				bw.write(System.getProperty("line.separator"));
 			}
 			bw.close();
+			this.isResult = true;
 		} catch (Exception e) {
 			System.out.println(e.toString());
+			this.isResult = false;
 		}
 	}
 
 	/**
 	 * PrintWriterを使用してファイルの書き込みをしてみる。<br/>
-	 * 
+	 *
 	 * @param outputList
 	 */
 	public void usePrintWriter(List<String> outputList) {
 		try {
-			File file = new File("usePrintWriter_" + Common.OUTPUT_FOLDER_PATH + Common.OUTPUT_FILE_NAME_KOKORO);
-			FileWriter filewriter = new FileWriter(file);
+			File file = new File(Common.OUTPUT_FOLDER_PATH + "usePrintWriter_" + Common.OUTPUT_FILE_NAME_KOKORO);
+			FileWriter filewriter = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(filewriter);
 			PrintWriter pw = new PrintWriter(bw);
 			for (String out : outputList) {
 				pw.println(out);
 			}
 			pw.close();
+			this.isResult = true;
 		} catch (Exception e) {
 			System.out.println(e.toString());
+			this.isResult = false;
 		}
+	}
+
+	public boolean isResult() {
+		return isResult;
+	}
+
+	public void setResult(boolean isResult) {
+		this.isResult = isResult;
 	}
 }

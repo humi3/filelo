@@ -12,6 +12,8 @@ import common.Common;
  */
 public class FileReaders {
 
+	private boolean isResult;
+
 	/**
 	 * ファイルの読み込みの計測のため、system.outしないß
 	 */
@@ -22,8 +24,10 @@ public class FileReaders {
 			while ((text = br.readLine()) != null) {
 				System.out.println(text);
 			}
+			this.isResult = true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			this.isResult = false;
 		}
 	}
 
@@ -36,5 +40,13 @@ public class FileReaders {
 
 	private File getKokoroFile() {
 		return this.getFile(Common.INPUT_FILE_NAME_KOKORO);
+	}
+
+	public boolean isResult() {
+		return isResult;
+	}
+
+	public void setResult(boolean isResult) {
+		this.isResult = isResult;
 	}
 }

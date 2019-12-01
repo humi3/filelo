@@ -12,10 +12,18 @@ import common.Common;
 /**
  * 各ファイルの読み込みをまとめたクラス<br>
  * filesの機能でファイルを読み込む動作をまとめたクラス
- * 
+ *
  * @author bunnk
  */
 public class FilesRead {
+
+	/*
+	 * 各メソッド実行後の判定<br/>
+	 * <br/>
+	 * 成功の場合:true<br/>
+	 * 失敗の場合:false
+	 */
+	private boolean isResult;
 
 	/**
 	 * readString<br>
@@ -37,8 +45,10 @@ public class FilesRead {
 		try {
 			String text = Files.readString(getKokoroPath(), StandardCharsets.UTF_8);
 			System.out.println(text);
+			this.isResult = true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			this.isResult = false;
 		}
 	}
 
@@ -67,8 +77,10 @@ public class FilesRead {
 			for (String str : texts) {
 				System.out.println(str);
 			}
+			this.isResult = true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			this.isResult = false;
 		}
 	}
 
@@ -95,8 +107,10 @@ public class FilesRead {
 			for (byte s : bytes) {
 				System.out.print(s);
 			}
+			this.isResult = true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			this.isResult = false;
 		}
 	}
 
@@ -109,8 +123,10 @@ public class FilesRead {
 		Path file = getKokoroPath();
 		try {
 			Files.lines(file).forEach(System.out::println);
+			this.isResult = true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			this.isResult = false;
 		}
 	}
 
@@ -126,5 +142,13 @@ public class FilesRead {
 	 */
 	private Path getKokoroPath() {
 		return this.getPath(Common.INPUT_FILE_NAME_KOKORO);
+	}
+
+	public boolean isResult() {
+		return isResult;
+	}
+
+	public void setResult(boolean isResult) {
+		this.isResult = isResult;
 	}
 }
