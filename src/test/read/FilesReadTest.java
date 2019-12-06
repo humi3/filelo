@@ -3,6 +3,7 @@ package test.read;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -38,7 +39,11 @@ class FilesReadTest {
 		assertTrue(fr.isResult());
 	}
 
+	/**
+	 * テストファイルが文字列のためBytesでのテストは行わない。
+	 */
 	@Test
+	@Disabled
 	void readAllBytesTest() {
 		this.fr.readAllBytes();
 		assertTrue(fr.isResult());

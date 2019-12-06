@@ -104,9 +104,8 @@ public class FilesRead {
 	public void readAllBytes() {
 		try {
 			byte[] bytes = Files.readAllBytes(getKokoroPath());
-			for (byte s : bytes) {
-				System.out.print(s);
-			}
+			String text = java.util.Arrays.toString(bytes);
+			System.out.println(text);
 			this.isResult = true;
 		} catch (IOException e) {
 			e.printStackTrace();
