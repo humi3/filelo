@@ -1,0 +1,22 @@
+# Java
+*.class
+*.jar
+!commons-lang3-3.9.jar
+Test.java
+
+# Build
+bin
+
+# Eclipse
+.project
+.classpath
+.settings
+
+#log
+*.log
+
+#txt
+*.txt
+
+# vs code
+.vscode
